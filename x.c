@@ -1456,12 +1456,17 @@ xdrawcursor(int cx, int cy, Glyph g, int ox, int oy, Glyph og)
 			break;
 		case 3: /* Blinking Underline */
 		case 4: /* Steady Underline */
-			XftDrawRect(xw.draw, &drawcol,
-					win.hborderpx + cx * win.cw,
-					win.vborderpx + (cy + 1) * win.ch - \
-						cursorthickness,
-					win.cw, cursorthickness);
-			break;
+                        XftDrawRect(xw.draw, &drawcol,
+                                    win.hborderpx + cx * win.cw,
+                                    win.vborderpx + (cy + 1) * win.ch - \
+                                    cursorthickness,
+                                    win.cw, cursorthickness);
+
+                        XftDrawRect(xw.draw, &drawcol,
+                                    win.hborderpx + cx * win.cw,
+                                    win.vborderpx + cy * win.ch,
+                                    win.cw, cursorthickness);
+                        break;
 		case 5: /* Blinking bar */
 		case 6: /* Steady bar */
 			XftDrawRect(xw.draw, &drawcol,
